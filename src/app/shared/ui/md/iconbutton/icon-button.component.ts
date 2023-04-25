@@ -6,27 +6,20 @@ import {
 	Input,
 	NgZone,
 	Output,
-	forwardRef,
 	inject,
 } from "@angular/core";
-import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import type { IconButton as MdIconButtonElement } from "@material/web/iconbutton/lib/icon-button";
 import { fromEvent, map, tap, merge, takeUntil } from "rxjs";
 import {
 	BooleanInput,
 	coerceBooleanProperty,
 } from "src/app/shared/utils/coercion/boolean-property";
+import { provideValueAccessor } from "src/app/shared/utils/ng/provide-value-accessor";
 import { useOnDestroy } from "src/app/shared/utils/ng/use-on-destroy";
-
-export const provideIconButtonValueAccessor = <T>(c: T) => ({
-	provide: NG_VALUE_ACCESSOR,
-	useExisting: forwardRef(() => c),
-	multi: true,
-});
 
 @Component({
 	template: ` <ng-content></ng-content> `,
-	providers: [provideIconButtonValueAccessor(MdIconButtonComponent)],
+	providers: [provideValueAccessor(MdIconButtonComponent)],
 })
 export class MdIconButtonComponent {
 	private el: MdIconButtonElement = inject(ElementRef).nativeElement;
