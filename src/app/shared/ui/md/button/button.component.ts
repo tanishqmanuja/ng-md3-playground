@@ -1,11 +1,4 @@
-import {
-	ChangeDetectorRef,
-	Component,
-	ElementRef,
-	Input,
-	NgZone,
-	inject,
-} from "@angular/core";
+import { Component, ElementRef, Input, NgZone, inject } from "@angular/core";
 
 import type { Button as MdButtonElement } from "@material/web/button/lib/button.js";
 import "@material/web/button/lib/button.js";
@@ -15,7 +8,6 @@ import {
 } from "src/app/shared/utils/coercion/boolean-property";
 
 import { provideValueAccessor } from "src/app/shared/utils/ng/provide-value-accessor";
-import { useOnDestroy } from "src/app/shared/utils/ng/use-on-destroy";
 
 @Component({
 	template: ` <ng-content></ng-content>`,

@@ -7,11 +7,15 @@ import { MdIconButtonModule } from "../shared/ui/md/iconbutton/icon-button.modul
 import { MdFabComponent } from "../shared/ui/md/fab/fab.component";
 import { MdFabExtendedComponent } from "../shared/ui/md/fab/fab-extended.component";
 import { MdButtonModule } from "../shared/ui/md/button/button.module";
+import { MdCheckboxComponent } from "../shared/ui/md/checkbox/checkbox.component";
+import { MdDividerComponent } from "../shared/ui/md/divider/divider.component";
 
 @Component({
 	standalone: true,
 	template: `
 		<h1>MD Test</h1>
+		<md-divider />
+
 		<h2>Form</h2>
 		<form [formGroup]="testForm">
 			<md-switch showOnlySelectedIcon formControlName="switch1"></md-switch>
@@ -19,6 +23,7 @@ import { MdButtonModule } from "../shared/ui/md/button/button.module";
 			<md-standard-icon-button toggle formControlName="settings"
 				>settings</md-standard-icon-button
 			>
+			<md-checkbox formControlName="check"></md-checkbox>
 		</form>
 		<h2>Form Value</h2>
 		<pre>{{ testForm.value | json }}</pre>
@@ -54,6 +59,8 @@ import { MdButtonModule } from "../shared/ui/md/button/button.module";
 		MdIconButtonModule,
 		MdFabComponent,
 		MdFabExtendedComponent,
+		MdCheckboxComponent,
+		MdDividerComponent,
 	],
 })
 export default class TestComponent {
@@ -61,6 +68,7 @@ export default class TestComponent {
 		switch1: new FormControl(true),
 		switch2: new FormControl(false),
 		settings: new FormControl(true),
+		check: new FormControl(true),
 	});
 
 	log(ev: any) {
