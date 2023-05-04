@@ -1,4 +1,12 @@
-import { ChangeDetectionStrategy, Component } from "@angular/core";
+import {
+	ChangeDetectionStrategy,
+	Component,
+	Directive,
+	ElementRef,
+	effect,
+	inject,
+	signal,
+} from "@angular/core";
 import { JsonPipe } from "@angular/common";
 import { MdSwitchComponent } from "../shared/ui/md/switch/switch.component";
 import { FormControl, FormGroup, ReactiveFormsModule } from "@angular/forms";
@@ -9,6 +17,8 @@ import { MdBrandedFabComponent } from "../shared/ui/md/fab/branded-fab.component
 import { MdButtonModule } from "../shared/ui/md/button/button.module";
 import { MdCheckboxComponent } from "../shared/ui/md/checkbox/checkbox.component";
 import { MdDividerComponent } from "../shared/ui/md/divider/divider.component";
+import { MdNavigationTabComponent } from "../shared/ui/md/navigationtab/navigationtab.component";
+import { MdNavigationBarComponent } from "../shared/ui/md/navigationbar/navigationbar.component";
 
 @Component({
 	standalone: true,
@@ -29,7 +39,14 @@ import { MdDividerComponent } from "../shared/ui/md/divider/divider.component";
 		<pre>{{ testForm.value | json }}</pre>
 
 		<h2>Icon</h2>
-		<md-icon>settings</md-icon>
+		<md-icon fill [style.--md-icon-font]="'Material Symbols Rounded'"
+			>settings</md-icon
+		>
+		<md-icon fill="0.25" font>signal_wifi_bad</md-icon>
+
+		<md-icon [style.--md-icon-font]="'Material Symbols Sharp'"
+			>settings</md-icon
+		>
 
 		<h2>Icon Button</h2>
 		<md-outlined-icon-button>settings</md-outlined-icon-button>
@@ -59,8 +76,24 @@ import { MdDividerComponent } from "../shared/ui/md/divider/divider.component";
 		<md-elevated-button>Elevated</md-elevated-button>
 
 		<h2>Nav</h2>
+		<md-navigation-bar>
+			<md-navigation-tab label="settings">
+				<md-icon slot="inactiveIcon">settings</md-icon>
+				<md-icon slot="activeIcon">settings</md-icon>
+			</md-navigation-tab>
+			<md-navigation-tab label="wifi">
+				<md-icon slot="inactiveIcon">star</md-icon>
+				<md-icon slot="activeIcon">star</md-icon>
+			</md-navigation-tab>
+		</md-navigation-bar>
 	`,
-	styles: [],
+	styles: [
+		`
+			md-icon[filled] {
+				--md-icon-font-variation-settings: "FILL" 1;
+			}
+		`,
+	],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	imports: [
 		JsonPipe,
@@ -73,9 +106,15 @@ import { MdDividerComponent } from "../shared/ui/md/divider/divider.component";
 		MdBrandedFabComponent,
 		MdCheckboxComponent,
 		MdDividerComponent,
+		MdNavigationTabComponent,
+		MdNavigationBarComponent,
 	],
 })
 export default class TestComponent {
+	variations = {
+		fill: 0.25,
+	};
+
 	testForm = new FormGroup({
 		switch1: new FormControl(true),
 		switch2: new FormControl(false),
