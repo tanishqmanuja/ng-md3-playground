@@ -7,7 +7,6 @@ import { provideValueAccessor } from "src/app/shared/utils/ng/provide-value-acce
 	selector: "md-outlined-icon-button",
 	standalone: true,
 	template: ` <ng-content></ng-content>`,
-	styleUrls: ["../icon/icon-fonts.scss"],
 	providers: [provideValueAccessor(MdOutlinedIconButtonComponent)],
 })
 export class MdOutlinedIconButtonComponent extends MdIconButtonComponent {}

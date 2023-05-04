@@ -8,6 +8,5 @@ import { Variant } from "@material/web/fab/fab";
 	selector: "md-branded-fab",
 	standalone: true,
 	template: ` <ng-content></ng-content>`,
-	styleUrls: ["../icon/icon-fonts.scss"],
 })
 export class MdBrandedFabComponent extends MdFabComponent {}
