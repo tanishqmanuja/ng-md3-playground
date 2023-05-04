@@ -5,7 +5,7 @@ import { FormControl, FormGroup, ReactiveFormsModule } from "@angular/forms";
 import { MdIconComponent } from "../shared/ui/md/icon/icon.component";
 import { MdIconButtonModule } from "../shared/ui/md/iconbutton/icon-button.module";
 import { MdFabComponent } from "../shared/ui/md/fab/fab.component";
-import { MdFabExtendedComponent } from "../shared/ui/md/fab/fab-extended.component";
+import { MdBrandedFabComponent } from "../shared/ui/md/fab/branded-fab.component";
 import { MdButtonModule } from "../shared/ui/md/button/button.module";
 import { MdCheckboxComponent } from "../shared/ui/md/checkbox/checkbox.component";
 import { MdDividerComponent } from "../shared/ui/md/divider/divider.component";
@@ -38,8 +38,18 @@ import { MdDividerComponent } from "../shared/ui/md/divider/divider.component";
 		<md-standard-icon-button toggle>settings</md-standard-icon-button>
 
 		<h2>Fab</h2>
-		<md-fab icon="wifi" label="secondary"></md-fab>
-		<md-fab-extended icon="wifi" label="secondary"></md-fab-extended>
+		<md-fab size="small" variant="surface">
+			<md-icon slot="icon">settings</md-icon>
+		</md-fab>
+		<md-fab variant="primary" size="medium">
+			<md-icon slot="icon">settings</md-icon>
+		</md-fab>
+		<md-fab label="primary" variant="primary"></md-fab>
+		<md-fab label="secondary" variant="secondary"></md-fab>
+		<md-fab label="tertiary" variant="tertiary"></md-fab>
+		<md-branded-fab>
+			<md-icon slot="icon">settings</md-icon>
+		</md-branded-fab>
 
 		<h2>Button</h2>
 		<md-text-button>Text</md-text-button>
@@ -47,6 +57,8 @@ import { MdDividerComponent } from "../shared/ui/md/divider/divider.component";
 		<md-outlined-button>Outlined</md-outlined-button>
 		<md-tonal-button>Tonal</md-tonal-button>
 		<md-elevated-button>Elevated</md-elevated-button>
+
+		<h2>Nav</h2>
 	`,
 	styles: [],
 	changeDetection: ChangeDetectionStrategy.OnPush,
@@ -58,7 +70,7 @@ import { MdDividerComponent } from "../shared/ui/md/divider/divider.component";
 		MdButtonModule,
 		MdIconButtonModule,
 		MdFabComponent,
-		MdFabExtendedComponent,
+		MdBrandedFabComponent,
 		MdCheckboxComponent,
 		MdDividerComponent,
 	],

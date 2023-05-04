@@ -1,5 +1,9 @@
 import { Component, ElementRef, Input, NgZone, inject } from "@angular/core";
-import type { MdFab as MdFabElement } from "@material/web/fab/fab.js";
+import type {
+	FabSize,
+	MdFab as MdFabElement,
+	Variant,
+} from "@material/web/fab/fab.js";
 import "@material/web/fab/fab.js";
 import {
 	BooleanInput,
@@ -17,13 +21,23 @@ export class MdFabComponent {
 	private ngZone = inject(NgZone);
 
 	@Input()
-	set icon(v: string) {
+	set variant(v: Variant) {
 		this.ngZone.runOutsideAngular(() => {
-			this.el.icon = v;
+			this.el.variant = v;
 		});
 	}
-	get icon() {
-		return this.el.icon;
+	get variant() {
+		return this.el.variant;
+	}
+
+	@Input()
+	set size(v: FabSize) {
+		this.ngZone.runOutsideAngular(() => {
+			this.el.size = v;
+		});
+	}
+	get size() {
+		return this.el.size;
 	}
 
 	@Input()
@@ -42,7 +56,7 @@ export class MdFabComponent {
 			this.el.lowered = coerceBooleanProperty(v);
 		});
 	}
-	get icons() {
+	get lowered() {
 		return this.el.lowered;
 	}
 }

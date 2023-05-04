@@ -1,8 +1,8 @@
 import { NgModule } from "@angular/core";
 import { MdFabComponent } from "./fab.component";
-import { MdFabExtendedComponent } from "./fab-extended.component";
+import { MdBrandedFabComponent } from "./branded-fab.component";
 
-export const MdFabComponents = [MdFabComponent, MdFabExtendedComponent];
+export const MdFabComponents = [MdFabComponent, MdBrandedFabComponent];
 
 @NgModule({
 	imports: MdFabComponents,
