@@ -9,13 +9,13 @@ import {
 	inject,
 } from "@angular/core";
 import type { IconButton as MdIconButtonElement } from "@material/web/iconbutton/lib/icon-button";
-import { fromEvent, map, tap, merge, takeUntil } from "rxjs";
+import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
+import { fromEvent, map, tap, merge } from "rxjs";
 import {
 	BooleanInput,
 	coerceBooleanProperty,
 } from "src/app/shared/utils/coercion/boolean-property";
 import { provideValueAccessor } from "src/app/shared/utils/ng/provide-value-accessor";
-import { useOnDestroy } from "src/app/shared/utils/ng/use-on-destroy";
 
 @Component({
 	template: ` <ng-content></ng-content> `,
@@ -25,7 +25,6 @@ export class MdIconButtonComponent {
 	private el: MdIconButtonElement = inject(ElementRef).nativeElement;
 	private ngZone = inject(NgZone);
 	private cdRef = inject(ChangeDetectorRef);
-	private readonly onDestroy$ = useOnDestroy();
 
 	@Input()
 	set disabled(v: BooleanInput) {
@@ -91,7 +90,7 @@ export class MdIconButtonComponent {
 				})
 			);
 
-			merge(handleChange$).pipe(takeUntil(this.onDestroy$)).subscribe();
+			merge(handleChange$).pipe(takeUntilDestroyed()).subscribe();
 		});
 	}
 
