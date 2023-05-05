@@ -1,12 +1,4 @@
-import {
-	ChangeDetectionStrategy,
-	Component,
-	Directive,
-	ElementRef,
-	effect,
-	inject,
-	signal,
-} from "@angular/core";
+import { ChangeDetectionStrategy, Component } from "@angular/core";
 import { JsonPipe } from "@angular/common";
 import { MdSwitchComponent } from "../shared/ui/md/switch/switch.component";
 import { FormControl, FormGroup, ReactiveFormsModule } from "@angular/forms";
@@ -76,14 +68,14 @@ import { MdNavigationBarComponent } from "../shared/ui/md/navigationbar/navigati
 		<md-elevated-button>Elevated</md-elevated-button>
 
 		<h2>Nav</h2>
-		<md-navigation-bar>
+		<md-navigation-bar activeIndex="1" (activeIndexChange)="log($event)">
 			<md-navigation-tab label="settings">
 				<md-icon slot="inactiveIcon">settings</md-icon>
-				<md-icon slot="activeIcon">settings</md-icon>
+				<md-icon slot="activeIcon" fill>settings</md-icon>
 			</md-navigation-tab>
 			<md-navigation-tab label="wifi">
 				<md-icon slot="inactiveIcon">star</md-icon>
-				<md-icon slot="activeIcon">star</md-icon>
+				<md-icon slot="activeIcon" fill>star</md-icon>
 			</md-navigation-tab>
 		</md-navigation-bar>
 	`,
@@ -123,6 +115,7 @@ export default class TestComponent {
 	});
 
 	log(ev: any) {
+		console.log("ev");
 		console.dir(ev);
 	}
 }
