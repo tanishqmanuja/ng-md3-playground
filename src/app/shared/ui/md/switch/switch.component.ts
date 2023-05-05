@@ -17,8 +17,8 @@ import {
 	BooleanInput,
 	coerceBooleanProperty,
 } from "../../../utils/coercion/boolean-property";
-import { useOnDestroy } from "../../../utils/ng/use-on-destroy";
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
+import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 
 @Component({
 	selector: "md-switch",
@@ -100,8 +100,6 @@ export class MdSwitchComponent implements ControlValueAccessor {
 
 	@Output() changeEvent = new EventEmitter<boolean>();
 
-	private readonly onDestroy$ = useOnDestroy();
-
 	constructor() {
 		this.ngZone.runOutsideAngular(() => {
 			const handleChange$ = fromEvent(this.el, "change").pipe(
@@ -114,7 +112,7 @@ export class MdSwitchComponent implements ControlValueAccessor {
 				})
 			);
 
-			merge(handleChange$).pipe(takeUntil(this.onDestroy$)).subscribe();
+			merge(handleChange$).pipe(takeUntilDestroyed()).subscribe();
 		});
 	}
 
