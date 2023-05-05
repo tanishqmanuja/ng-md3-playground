@@ -11,6 +11,7 @@ import { MdCheckboxComponent } from "../shared/ui/md/checkbox/checkbox.component
 import { MdDividerComponent } from "../shared/ui/md/divider/divider.component";
 import { MdNavigationTabComponent } from "../shared/ui/md/navigationtab/navigationtab.component";
 import { MdNavigationBarComponent } from "../shared/ui/md/navigationbar/navigationbar.component";
+import { MdMenuModule } from "../shared/ui/md/menu/menu.module";
 
 @Component({
 	standalone: true,
@@ -67,6 +68,15 @@ import { MdNavigationBarComponent } from "../shared/ui/md/navigationbar/navigati
 		<md-tonal-button>Tonal</md-tonal-button>
 		<md-elevated-button>Elevated</md-elevated-button>
 
+		<h2>Menu</h2>
+		<md-menu #menu fixed>
+			<md-menu-item headline="This is a header"></md-menu-item>
+			<md-menu-item headline="This is a header 2">Zaphod</md-menu-item>
+			<md-menu-item headline="will not close" keepOpen>Hello</md-menu-item>
+		</md-menu>
+		<md-text-button (click)="menu.show()">Show Menu</md-text-button>
+		<md-text-button (click)="menu.close()">Close Menu</md-text-button>
+
 		<h2>Nav</h2>
 		<md-navigation-bar activeIndex="1" (activeIndexChange)="log($event)">
 			<md-navigation-tab label="settings">
@@ -100,6 +110,7 @@ import { MdNavigationBarComponent } from "../shared/ui/md/navigationbar/navigati
 		MdDividerComponent,
 		MdNavigationTabComponent,
 		MdNavigationBarComponent,
+		MdMenuModule,
 	],
 })
 export default class TestComponent {
