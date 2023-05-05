@@ -14,7 +14,6 @@ import {
 	selector: "md-fab",
 	standalone: true,
 	template: ` <ng-content></ng-content>`,
-	styleUrls: ["../icon/icon-fonts.scss"],
 })
 export class MdFabComponent {
 	private el: MdFabElement = inject(ElementRef).nativeElement;
