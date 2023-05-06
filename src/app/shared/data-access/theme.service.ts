@@ -8,6 +8,7 @@ import {
 } from "@material/material-color-utilities";
 import { isDarkMode } from "../utils/ng/prefers-color-scheme";
 import { tap } from "rxjs";
+import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 
 export function applySurfaceStyles(
 	theme: Theme,
@@ -51,7 +52,7 @@ export function applySurfaceStyles(
 	providedIn: "root",
 })
 export class ThemeService {
-	private theme = themeFromSourceColor(argbFromHex("#f82506"));
+	private readonly theme = themeFromSourceColor(argbFromHex("#f82506"));
 
 	constructor() {
 		isDarkMode()
@@ -59,7 +60,8 @@ export class ThemeService {
 				tap(dark => {
 					applyTheme(this.theme, { dark });
 					applySurfaceStyles(this.theme, { dark });
-				})
+				}),
+				takeUntilDestroyed()
 			)
 			.subscribe();
 	}
